@@ -4,13 +4,19 @@
 #include<sstream>
 #include<exception>
 
-#include "Renderer.h"
+#include "Application.h"
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
 	try
 	{
-		Straight::Renderer renderer{};
+		Straight::Application application{hInstance};
+		bool result = application.Initialize();
+
+		if (!result) return 1;
+
+		application.Run();
+
 	}
 	catch (const std::exception& e)
 	{
